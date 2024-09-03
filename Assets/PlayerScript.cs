@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public bool winMessage;
     public bool hit;
     public bool displayWin;
+    public bool end;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PlayerScript : MonoBehaviour
         loseMessage = false;
         timer2 = 0;
         displayWin = false;
+        end = false;
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class PlayerScript : MonoBehaviour
         if (loseMessage)
         {
             statusText.text = "The trash monster lives to fight another day. Try again by pressing P!";
+            end = true;
             timer2 += Time.deltaTime;
             if(timer2 > 5)
             {
@@ -81,14 +84,20 @@ public class PlayerScript : MonoBehaviour
         if (winMessage)
         {
             displayWin = true;
-            statusText.text = "Congratulations! The world now cleaner thanks to your efforts. Play again by pressing P!";
+            statusText.text = "Congratulations! The world is now cleaner thanks to your efforts. Play again by pressing P!";
             timer2 += Time.deltaTime;
+            end = true;
             if (timer2 > 5)
             {
                 winMessage = false;
                 statusText.text = "";
                 timer2 = 0;
             }
+        }
+
+        if (end)
+        {
+            statusText.text = "";
         }
     }
 }
