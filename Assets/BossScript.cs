@@ -39,9 +39,14 @@ public class BossScript : MonoBehaviour
             Instantiate(projectile, projectileSpawn.transform.position, projectileSpawn.transform.localRotation);
             timer = 0;
         }
-        if(timer2 > 4 && health >= 500)
+        if(timer2 > 4 && health < 481)
         {
             health += 20;
+            timer2 = 0;
+        }
+        else if (timer2 > 4 && health <= 500)
+        {
+            health = 500;
             timer2 = 0;
         }
         if(health <= 0)

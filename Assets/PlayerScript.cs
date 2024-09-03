@@ -20,6 +20,8 @@ public class PlayerScript : MonoBehaviour
     public bool hit;
     public bool displayWin;
     public bool end;
+    public TMP_Text status2Text;
+    public Transform playerDeathSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,11 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(transform.position.y < -100)
+        {
+            transform.position = playerDeathSpawn.position;
+        }
         if (hit)
         {
             bossScript.health -= 4;
@@ -56,7 +63,7 @@ public class PlayerScript : MonoBehaviour
             loseMessage = true;
             bossScript.health = 500;
             health = 100;
-            transform.position = spawn.position;
+            transform.position = playerDeathSpawn.position;
         }
         if (loseMessage)
         {
@@ -97,7 +104,7 @@ public class PlayerScript : MonoBehaviour
 
         if (end)
         {
-            statusText.text = "";
+            status2Text.text = "";
         }
     }
 }
